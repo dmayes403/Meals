@@ -1,13 +1,35 @@
 import React, { Component } from 'react';
 import './recipe-home.scss';
-// import RecipeFilter from '../recipe-filter/recipe-filter';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-const RecipeHome = () => {
-    return (
-        <div className="rh-main-container">
-            {/* <RecipeFilter />  */}
-        </div>
-    )
+class RecipeHome extends Component {
+    componentDidMount() {
+        this.props.getCategories();
+    }
+
+    render() {
+        return (
+            <div className="rh-main-container">
+                <div className="rh-category-container">
+    
+                </div>
+    
+                <div className="rh-meals-container">
+    
+                </div>
+    
+                <div className="rh-meal-container">
+    
+                </div>
+            </div>
+        )
+    }
 }
 
-export default RecipeHome
+const mapStateToProps = (recipes) => {
+    console.log(recipes);
+    return recipes;
+};
+
+export default connect(mapStateToProps, actions)(RecipeHome);
