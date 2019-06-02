@@ -1,0 +1,40 @@
+.tp-main-container {
+    height: 65px;
+    width: 100%;
+    background-color: #f09c67;
+    font-family: 'Righteous', cursive;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 16px;
+    color: #4c8492;
+}
+
+.tp-menu-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    span {
+        margin-right: 10px;
+    }
+}
+
+.tp-title {
+    color: #4c8492;
+    font-size: 32px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.tp-menu-item {
+    color: #4c8492;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.tp-account-icon {
+    color: #4c8492;
+}
+
