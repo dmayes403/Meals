@@ -12,7 +12,9 @@ class RecipeHome extends Component {
         return (
             <div className="rh-main-container">
                 <div className="rh-category-container">
-    
+                    {this.props.categories.map((recipe, index) => {
+                        return <div key={index}>{recipe.strCategory}</div>
+                    })}
                 </div>
     
                 <div className="rh-meals-container">
@@ -27,7 +29,7 @@ class RecipeHome extends Component {
     }
 }
 
-const mapStateToProps = (recipes) => {
+const mapStateToProps = ({recipes}) => {
     console.log(recipes);
     return recipes;
 };
