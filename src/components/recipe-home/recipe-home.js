@@ -37,41 +37,42 @@ const RecipeHome = props => {
                 })} */}
                 <Tabs
                     value={0}>
-                    <Tab label="Categories" />
-                    <Tab label="Areas" />
-                    <Tab label="Ingredients" />
+                    <Tab label="Categories" onClick={() => setTabIndex(0)}/>
+                    <Tab label="Areas" onClick={() => setTabIndex(1)}/>
+                    <Tab label="Ingredients" onClick={() => setTabIndex(2)}/>
                 </Tabs>
             </Card>
 
             <div className="rh-meals-container">
-                {/* {TabContainer(tabIndex, categories, areas, ingredients)}; */}
+                {TabContainer(tabIndex, categories, areas, ingredients)};
             </div>
         </div>
     )
 
     function TabContainer(selectedTabIndex, tempCats, tempAreas, tempIngredients) {
+        console.log(selectedTabIndex);
         switch (selectedTabIndex) {
             case 0:
                 return (
-                    tempCats.map(category => {
+                    tempCats.map((category, index) => {
                         return (
-                            <div>{category}</div>
+                            <div key={index}>{category.strCategory}</div>
                         )
                     })
                 )
             case 1:
                 return  (
-                    tempAreas.map(area => {
+                    tempAreas.map((area, index) => {
                         return (
-                            <div>{area}</div>
+                            <div key={index}>{area.strArea}</div>
                         )
                     })
                 )
             case 2:
                 return (
-                    tempIngredients.map(ingredient => {
+                    tempIngredients.map((ingredient, index) => {
                         return (
-                            <div>{ingredient}</div>
+                            <div key={index}>{ingredient.strIngredient}</div>
                         )
                     })
                 )
