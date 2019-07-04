@@ -44,23 +44,77 @@ const RecipeHome = props => {
             </Card>
 
             <div className="rh-meals-container">
-
-            </div>
-
-            <div className="rh-meal-container">
-
+                {/* {TabContainer(tabIndex, categories, areas, ingredients)}; */}
             </div>
         </div>
     )
+
+    function TabContainer(selectedTabIndex, tempCats, tempAreas, tempIngredients) {
+        switch (selectedTabIndex) {
+            case 0:
+                return (
+                    tempCats.map(category => {
+                        return (
+                            <div>{category}</div>
+                        )
+                    })
+                )
+            case 1:
+                return  (
+                    tempAreas.map(area => {
+                        return (
+                            <div>{area}</div>
+                        )
+                    })
+                )
+            case 2:
+                return (
+                    tempIngredients.map(ingredient => {
+                        return (
+                            <div>{ingredient}</div>
+                        )
+                    })
+                )
+        }
+    }
 }
 
-function TabContainer(props) {
-    return (
-      <Typography component="div" style={{ padding: 8 * 3 }}>
-        {props.children}
-      </Typography>
-    );
+function TabContainer(selectedTabIndex, tempCats, tempAreas, tempIngredients) {
+    switch (selectedTabIndex) {
+        case 0:
+            return (
+                tempCats.map(category => {
+                    return (
+                        <div>{category}</div>
+                    )
+                })
+            )
+        case 1:
+            return  (
+                tempAreas.map(area => {
+                    return (
+                        <div>{area}</div>
+                    )
+                })
+            )
+        case 2:
+            return (
+                tempIngredients.map(ingredient => {
+                    return (
+                        <div>{ingredient}</div>
+                    )
+                })
+            )
+    }
 }
+
+// function TabContainer(props) {
+//     return (
+//       <Typography component="div" style={{ padding: 8 * 3 }}>
+//         {props.children}
+//       </Typography>
+//     );
+// }
 
 export default RecipeHome;
 
