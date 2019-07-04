@@ -9,6 +9,11 @@ import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 
 const RecipeHome = props => {
+    const styles = {
+        tab: {
+            color: '#4c8492'
+        },
+    }
     const [tabIndex, setTabIndex] = useState(0);
     const [categories, setCategories] = useState([]);
     const [areas, setAreas] = useState([]);
@@ -32,20 +37,17 @@ const RecipeHome = props => {
     return (
         <div className="rh-main-container">
             <Card className="rh-category-container" style={{backgroundColor: '#fffde8'}}>
-                {/* {categories.map((recipe, index) => {
-                    return <div key={index}>{recipe.strCategory}</div>
-                })} */}
                 <Tabs
-                    value={0}>
-                    <Tab label="Categories" onClick={() => setTabIndex(0)}/>
-                    <Tab label="Areas" onClick={() => setTabIndex(1)}/>
-                    <Tab label="Ingredients" onClick={() => setTabIndex(2)}/>
+                    value={tabIndex}>
+                    <Tab style={styles.tab} label="Categories" onClick={() => setTabIndex(0)}/>
+                    <Tab style={styles.tab} label="Areas" onClick={() => setTabIndex(1)}/>
+                    <Tab style={styles.tab} label="Ingredients" onClick={() => setTabIndex(2)}/>
                 </Tabs>
-            </Card>
 
-            <div className="rh-meals-container">
-                {TabContainer(tabIndex, categories, areas, ingredients)};
-            </div>
+                <div className="rh-meals-container">
+                    {TabContainer(tabIndex, categories, areas, ingredients)}
+                </div>
+            </Card>
         </div>
     )
 
@@ -56,7 +58,8 @@ const RecipeHome = props => {
                 return (
                     tempCats.map((category, index) => {
                         return (
-                            <div key={index}>{category.strCategory}</div>
+                            <div className="catRow" key={index}
+                                onClick={() => handleRowClick(category.strCategory)}>{category.strCategory}</div>
                         )
                     })
                 )
@@ -64,7 +67,8 @@ const RecipeHome = props => {
                 return  (
                     tempAreas.map((area, index) => {
                         return (
-                            <div key={index}>{area.strArea}</div>
+                            <div className="catRow" key={index}
+                                onClick={() => handleRowClick(area.strArea)}>{area.strArea}</div>
                         )
                     })
                 )
@@ -72,40 +76,16 @@ const RecipeHome = props => {
                 return (
                     tempIngredients.map((ingredient, index) => {
                         return (
-                            <div key={index}>{ingredient.strIngredient}</div>
+                            <div className="catRow" key={index}
+                                onClick={() => handleRowClick(ingredient.strIngredient)}>{ingredient.strIngredient}</div>
                         )
                     })
                 )
         }
     }
-}
 
-function TabContainer(selectedTabIndex, tempCats, tempAreas, tempIngredients) {
-    switch (selectedTabIndex) {
-        case 0:
-            return (
-                tempCats.map(category => {
-                    return (
-                        <div>{category}</div>
-                    )
-                })
-            )
-        case 1:
-            return  (
-                tempAreas.map(area => {
-                    return (
-                        <div>{area}</div>
-                    )
-                })
-            )
-        case 2:
-            return (
-                tempIngredients.map(ingredient => {
-                    return (
-                        <div>{ingredient}</div>
-                    )
-                })
-            )
+    function handleRowClick(row) {
+        console.log(row);
     }
 }
 

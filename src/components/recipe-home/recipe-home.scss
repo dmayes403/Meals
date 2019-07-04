@@ -2,9 +2,32 @@
     height: calc(100vh - 65px);
     background-color: #fffde8;
     padding: 30px;
+    color: #4c8492;
 }
 
 .rh-category-container {
     // width: 33%;
     max-width: 325px;
+    height: 100%;
+    color: #4c8492;
+}
+
+.rh-meals-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+    color: #4c8492;
+    overflow: auto;
+    border-top: 1px solid #4c8492;
+}
+
+.catRow {
+    padding: 5px;
+}
+
+.catRow:hover {
+    background-color: rgba(76,132,146, .2);
+    cursor: pointer;
 }
