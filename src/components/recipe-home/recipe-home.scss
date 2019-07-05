@@ -3,16 +3,19 @@
     background-color: #fffde8;
     padding: 30px;
     color: #4c8492;
+    display: flex;
+    flex-direction: row;
 }
 
 .rh-category-container {
-    // width: 33%;
-    max-width: 325px;
+    width: 33%;
+    // min-width: 325px;
+    // max-width: 325px;
     height: 100%;
     color: #4c8492;
 }
 
-.rh-meals-container {
+.rh-sections-container {
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -25,9 +28,29 @@
 
 .catRow {
     padding: 5px;
+    color: #4c8492;
 }
 
 .catRow:hover {
     background-color: rgba(76,132,146, .2);
     cursor: pointer;
+}
+
+.rh-meals-container {
+    margin-left: 10px;
+    width: 33%;
+    color: #4c8492;
+    height: 100%;
+    overflow: auto;
+
+    .title {
+        margin: 15px;
+        color: #4c8492;
+    }
+}
+
+.rh-meals-list-container {
+    height: 100%;
+    overflow: auto;
+    padding: 10px;
 }
