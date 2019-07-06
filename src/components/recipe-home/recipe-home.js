@@ -22,6 +22,8 @@ const RecipeHome = props => {
     const [selectedArea, setSelectedArea] = useState(null);
     const [selectedIng, setSelectedIng] = useState(null);
     const [meals, setMeals] = useState([]);
+    const [mealId, setMealId] = useState(null);
+    const [meal, setMeal] = useState(null);
 
 
     useEffect(() => {
@@ -56,7 +58,17 @@ const RecipeHome = props => {
                 setMeals(response.data.meals);
             })
         }
-    }, [selectedCat, selectedArea, selectedIng])
+    }, [selectedCat, selectedArea, selectedIng]);
+
+    useEffect(() => {
+        if (mealId) {
+            console.log(mealId);
+            axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`).then(response => {
+                console.log(response.data.meals[0]);
+                setMeal(response.data.meals[0]);
+            })
+        }
+    }, [mealId])
 
     return (
         <div className="rh-main-container">
@@ -73,7 +85,7 @@ const RecipeHome = props => {
                 </div>
             </Card>
 
-            {categoryBreakdown()}
+            {mealsList()}
         </div>
     )
 
@@ -84,7 +96,7 @@ const RecipeHome = props => {
                     tempCats.map((category, index) => {
                         return (
                             <div className="catRow" key={index}
-                                onClick={() => handleRowClick({'category': category.strCategory})}>{category.strCategory}</div>
+                                onClick={() => handleTabRowClick({'category': category.strCategory})}>{category.strCategory}</div>
                         )
                     })
                 )
@@ -93,7 +105,7 @@ const RecipeHome = props => {
                     tempAreas.map((area, index) => {
                         return (
                             <div className="catRow" key={index}
-                                onClick={() => handleRowClick({'area': area.strArea})}>{area.strArea}</div>
+                                onClick={() => handleTabRowClick({'area': area.strArea})}>{area.strArea}</div>
                         )
                     })
                 )
@@ -102,14 +114,14 @@ const RecipeHome = props => {
                     tempIngredients.map((ingredient, index) => {
                         return (
                             <div className="catRow" key={index}
-                                onClick={() => handleRowClick({'ingredient': ingredient.strIngredient})}>{ingredient.strIngredient}</div>
+                                onClick={() => handleTabRowClick({'ingredient': ingredient.strIngredient})}>{ingredient.strIngredient}</div>
                         )
                     })
                 )
         }
     }
 
-    function categoryBreakdown() {
+    function mealsList() {
         let selected = {};
         if (selectedCat) {
             selected = {section: 'Category', title: selectedCat.category};
@@ -132,7 +144,7 @@ const RecipeHome = props => {
         }
     }
 
-    function handleRowClick(row) {
+    function handleTabRowClick(row) {
         if (row.category) {
             setSelectedCat(row);
             setSelectedArea(null);
@@ -148,10 +160,15 @@ const RecipeHome = props => {
         }
     }
 
+    function handleMealsRowClick(meal) {
+        console.log(meal);
+        setMealId(meal.idMeal);
+    }
+
     function displayMeals() {
         if (meals.length) {
             return meals.map((meal, index) => {
-                return (<div key={index} className="catRow">{meal.strMeal}</div>)
+                return (<div key={index} onClick={() => handleMealsRowClick(meal)}className="catRow">{meal.strMeal}</div>)
             })
         }
     }
