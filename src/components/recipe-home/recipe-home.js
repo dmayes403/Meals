@@ -85,7 +85,9 @@ const RecipeHome = props => {
                 </div>
             </Card>
 
-            {mealsList()}
+            {displayMealsList()}
+
+            {displayMealDetails()}
         </div>
     )
 
@@ -121,7 +123,7 @@ const RecipeHome = props => {
         }
     }
 
-    function mealsList() {
+    function displayMealsList() {
         let selected = {};
         if (selectedCat) {
             selected = {section: 'Category', title: selectedCat.category};
@@ -170,6 +172,16 @@ const RecipeHome = props => {
             return meals.map((meal, index) => {
                 return (<div key={index} onClick={() => handleMealsRowClick(meal)}className="catRow">{meal.strMeal}</div>)
             })
+        }
+    }
+
+    function displayMealDetails() {
+        if (meal) {
+            return (
+                <div>
+                    <img src={meal.strMealThumb}></img>
+                </div>
+            )
         }
     }
 }
