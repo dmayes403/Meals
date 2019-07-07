@@ -163,7 +163,6 @@ const RecipeHome = props => {
     }
 
     function handleMealsRowClick(meal) {
-        console.log(meal);
         setMealId(meal.idMeal);
     }
 
@@ -178,9 +177,13 @@ const RecipeHome = props => {
     function displayMealDetails() {
         if (meal) {
             return (
-                <div>
-                    <img src={meal.strMealThumb}></img>
-                </div>
+                <Card className="rh-meal-container" style={{backgroundColor: '#fffde8'}}>
+                    <div className="title">{meal.strMeal}</div>
+                    <hr style={{marginBottom: '0px'}}></hr>
+                    <div className="rh-details-container">
+                        <img src={meal.strMealThumb}></img>
+                    </div>
+                </Card>
             )
         }
     }
