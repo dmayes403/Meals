@@ -62,10 +62,23 @@ const RecipeHome = props => {
 
     useEffect(() => {
         if (mealId) {
-            console.log(mealId);
             axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`).then(response => {
                 console.log(response.data.meals[0]);
-                setMeal(response.data.meals[0]);
+                const meal = response.data.meals[0];
+                const ingredientsArr = [];
+                const measurementsArr = [];
+                for (const prop in meal) {
+                    if (prop.indexOf('strIngredient') > -1 && meal[prop]) {
+                        ingredientsArr.push(meal[prop]);
+                    }
+
+                    if (prop.indexOf('strMeasure') > -1 && meal[prop]) {
+                        measurementsArr.push(meal[prop]);
+                    }
+                }
+                meal.ingredientsArr = ingredientsArr;
+                meal.measurementsArr = measurementsArr;
+                setMeal(meal);
             })
         }
     }, [mealId])
@@ -182,6 +195,14 @@ const RecipeHome = props => {
                     <hr style={{marginBottom: '0px'}}></hr>
                     <div className="rh-details-container">
                         <img src={meal.strMealThumb}></img>
+                        <div>Ingredients:</div>
+                        <div>
+                            {meal.ingredientsArr.map((ingredient, index) => {
+                                return (
+                                    <div key={index}>{ingredient}: {meal.measurementsArr[index]}</div>
+                                )
+                            })}
+                        </div>
                     </div>
                 </Card>
             )
