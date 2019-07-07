@@ -195,11 +195,11 @@ const RecipeHome = props => {
                     <hr style={{marginBottom: '0px'}}></hr>
                     <div className="rh-details-container">
                         <img src={meal.strMealThumb}></img>
-                        <div>Ingredients:</div>
+                        <div style={{margin: '5px 0px'}}>Ingredients:</div>
                         <div>
                             {meal.ingredientsArr.map((ingredient, index) => {
                                 return (
-                                    <div key={index}>{ingredient}: {meal.measurementsArr[index]}</div>
+                                    <div className="ingredient" key={index}>{ingredient}: {meal.measurementsArr[index]}</div>
                                 )
                             })}
                         </div>
