@@ -7,6 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
+import Favorite from '@material-ui/icons/Favorite'
 
 const RecipeHome = props => {
     const styles = {
@@ -194,7 +195,10 @@ const RecipeHome = props => {
                     <div className="title">{meal.strMeal}</div>
                     <hr style={{marginBottom: '0px'}}></hr>
                     <div className="rh-details-container">
-                        <img src={meal.strMealThumb}></img>
+                        <div style={{position: 'relative'}}>
+                            <img src={meal.strMealThumb}></img>
+                            <Favorite className="favorite" style={{fontSize: '32px', color: '#ffffff'}} />
+                        </div>
                         <div style={{margin: '5px 0px 0px 0px'}}>Ingredients:</div>
                         <ul style={{paddingLeft: '20px', marginTop: '5px'}}>
                             {meal.ingredientsArr.map((ingredient, index) => {
