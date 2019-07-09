@@ -205,6 +205,8 @@ const RecipeHome = props => {
                         </ul>
                         <div style={{margin: '5px 0px 0px 0px'}}>Instructions:</div>
                         <p id="instructions">{meal.strInstructions}</p>
+                        <div style={{margin: '5px 0px 0px 0px'}}>Source:</div>
+                        <a id="source-link" href={meal.strSource} target="_blank">{meal.strSource}</a>
                         <iframe style={{width: '100%', borderRadius: '5px'}} frameBorder="0" allowFullScreen="allowfullscreen"
                             src={`https://www.youtube.com/embed/${meal.strYoutube.split('=')[1]}`}></iframe>
                     </div>
