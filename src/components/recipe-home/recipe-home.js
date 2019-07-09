@@ -195,14 +195,18 @@ const RecipeHome = props => {
                     <hr style={{marginBottom: '0px'}}></hr>
                     <div className="rh-details-container">
                         <img src={meal.strMealThumb}></img>
-                        <div style={{margin: '5px 0px'}}>Ingredients:</div>
-                        <div>
+                        <div style={{margin: '5px 0px 0px 0px'}}>Ingredients:</div>
+                        <ul style={{paddingLeft: '20px', marginTop: '5px'}}>
                             {meal.ingredientsArr.map((ingredient, index) => {
                                 return (
-                                    <div className="ingredient" key={index}>{ingredient}: {meal.measurementsArr[index]}</div>
+                                    <li className="ingredient" key={index}>{ingredient}: {meal.measurementsArr[index]}</li>
                                 )
                             })}
-                        </div>
+                        </ul>
+                        <div style={{margin: '5px 0px 0px 0px'}}>Instructions:</div>
+                        <p id="instructions">{meal.strInstructions}</p>
+                        <iframe style={{width: '100%', borderRadius: '5px'}} frameBorder="0" allowFullScreen="allowfullscreen"
+                            src={`https://www.youtube.com/embed/${meal.strYoutube.split('=')[1]}`}></iframe>
                     </div>
                 </Card>
             )
